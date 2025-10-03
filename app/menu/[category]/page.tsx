@@ -47,9 +47,9 @@ export default function CategoryPage({ params }: { params: { category: string } 
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="card p-6 flex items-center justify-between"
+        className="card p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:justify-between"
       >
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
           <div className="flex items-center gap-2.5 text-basalt-700">
             <SlidersHorizontal className="w-5 h-5" />
             <label className="text-sm font-bold uppercase tracking-wider font-ottoman">Sırala:</label>
@@ -57,7 +57,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
           <select 
             value={sort} 
             onChange={(e)=>setSort(e.target.value as any)}
-            className="input-field pr-10 cursor-pointer font-semibold"
+            className="input-field pr-10 cursor-pointer font-semibold w-full sm:w-auto"
           >
             <option value="az">A → Z</option>
             <option value="za">Z → A</option>
@@ -71,7 +71,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="card p-8"
+        className="card p-4 sm:p-6 md:p-8"
       >
         <div className="mb-6 pb-4 border-b-2 border-basalt-300 flex items-center justify-between">
           <p className="text-sm text-basalt-600 font-semibold uppercase tracking-wider">

@@ -98,7 +98,7 @@ body::after {
 }
 
 .container {
-  @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10;
+  @apply mx-auto max-w-7xl px-3 sm:px-4 md:px-6 lg:px-8 relative z-10;
 }
 
 .card {

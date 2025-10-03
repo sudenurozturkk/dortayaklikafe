@@ -1,11 +1,21 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { QRCodeCanvas } from 'qrcode.react'
 import { motion } from 'framer-motion'
 import { QrCode, Download, Eye, Printer } from 'lucide-react'
 
 export default function QRPage(){
   const [table, setTable] = useState('A1')
+  const [qrSize, setQrSize] = useState(280)
+  
+  useEffect(() => {
+    const handleResize = () => {
+      setQrSize(window.innerWidth < 640 ? 200 : 280)
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
   const base = typeof window !== 'undefined' ? window.location.origin : ''
   const url = `${base}/t/${encodeURIComponent(table)}`
   
@@ -30,10 +40,10 @@ export default function QRPage(){
         <div className="inline-flex items-center justify-center p-5 bg-gradient-to-br from-copper-600 to-terracotta-600 rounded-xl border-2 border-copper-700 shadow-copper mb-3 wood-texture wood-grain">
           <QrCode className="text-basalt-50 w-10 h-10" />
         </div>
-        <h1 className="text-5xl font-ottoman font-black bg-gradient-to-r from-basalt-900 to-copper-800 bg-clip-text text-transparent tracking-wider">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-ottoman font-black bg-gradient-to-r from-basalt-900 to-copper-800 bg-clip-text text-transparent tracking-wider px-4">
           QR KOD OLUŞTUR
         </h1>
-        <p className="text-basalt-600 text-lg font-medium">
+        <p className="text-basalt-600 text-sm sm:text-base md:text-lg font-medium px-4">
           Masalarınız için özel QR kodları oluşturun ve yazdırın
         </p>
       </motion.div>
@@ -42,7 +52,7 @@ export default function QRPage(){
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="card p-8 space-y-6"
+        className="card p-4 sm:p-6 md:p-8 space-y-6"
       >
         <div className="space-y-4">
           <label className="block text-sm font-black text-basalt-800 uppercase tracking-widest font-ottoman">
@@ -74,10 +84,10 @@ export default function QRPage(){
           <div className="flex flex-col items-center gap-8">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-br from-copper-500 to-terracotta-600 rounded-xl blur-2xl opacity-30"></div>
-              <div className="relative bg-white p-8 rounded-xl shadow-copper border-4 border-basalt-700">
+              <div className="relative bg-white p-4 sm:p-6 md:p-8 rounded-xl shadow-copper border-4 border-basalt-700">
                 <QRCodeCanvas 
                   value={url} 
-                  size={280} 
+                  size={qrSize} 
                   level="H"
                   includeMargin
                   style={{ width: '100%', height: 'auto' }}
@@ -118,7 +128,7 @@ export default function QRPage(){
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
-        className="card p-8 bg-gradient-to-br from-dicle-50 to-transparent border-dicle-400"
+        className="card p-4 sm:p-6 md:p-8 bg-gradient-to-br from-dicle-50 to-transparent border-dicle-400"
       >
         <h3 className="font-ottoman font-black text-xl text-basalt-900 mb-6 flex items-center gap-3 uppercase tracking-wider">
           <div className="p-2 bg-gradient-to-br from-dicle-600 to-dicle-700 rounded-lg">
