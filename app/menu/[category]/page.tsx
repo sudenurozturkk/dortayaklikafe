@@ -6,6 +6,8 @@ import { useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowLeft, SlidersHorizontal } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
+
 export default function CategoryPage({ params }: { params: { category: string } }) {
   const decoded = decodeURIComponent(params.category)
   const items = (menuData as any)[decoded] || []

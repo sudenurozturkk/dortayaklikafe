@@ -4,6 +4,8 @@ import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Coffee, Loader2 } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
+
 export default function TablePage({ params }: { params: { id: string } }) {
   const router = useRouter()
   const tableId = decodeURIComponent(params.id)
