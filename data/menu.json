@@ -1,0 +1,101 @@
+{
+  "İçecekler": [
+    {
+      "name": "Çay",
+      "price": 30
+    },
+    {
+      "name": "Su",
+      "price": 30
+    },
+    {
+      "name": "Türk Kahvesi",
+      "price": 80
+    },
+    {
+      "name": "Dibek Kahvesi",
+      "price": 100
+    },
+    {
+      "name": "Menengiç Kahvesi",
+      "price": 100
+    },
+    {
+      "name": "Kürt Kahvesi",
+      "price": 100
+    },
+    {
+      "name": "Limonata",
+      "price": 80
+    },
+    {
+      "name": "Karadut Şerbeti",
+      "price": 80
+    },
+    {
+      "name": "Vişne Suyu",
+      "price": 80
+    },
+    {
+      "name": "Portakal Suyu",
+      "price": 80
+    },
+    {
+      "name": "Karışık Meyve Suyu",
+      "price": 80
+    },
+    {
+      "name": "Şeftali Suyu",
+      "price": 80
+    },
+    {
+      "name": "Salep",
+      "price": 100
+    },
+    {
+      "name": "Sıcak Çikolata",
+      "price": 100
+    },
+    {
+      "name": "Soda",
+      "price": 60
+    },
+    {
+      "name": "Filtre Kahve",
+      "price": 80
+    },
+    {
+      "name": "Double Kahve",
+      "price": 120
+    }
+  ],
+  "Portre Resim Çizimi": [
+    {
+      "name": "Porte Resim Çizimli Özel Kahve",
+      "price": 200,
+      "desc": "İstediğiniz bir kahveyi alıp 5-8 dakikada canlı portrenizi karton kahve bardağına yaptırabilirsiniz"
+    }
+  ],
+  "Yemekler & Kahvaltılar": [
+    {
+      "name": "Menemen",
+      "price": 150
+    },
+    {
+      "name": "Kavurmalı Yumurta",
+      "price": 180
+    },
+    {
+      "name": "Patates Kızartması",
+      "price": 120
+    },
+    {
+      "name": "Serpme Kahvaltı Tabağı",
+      "price": 200
+    },
+    {
+      "name": "2 Kişilik Serpme Kahvaltı",
+      "price": 450
+    }
+  ]
+}
