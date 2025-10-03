@@ -6,7 +6,14 @@ import { useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowLeft, SlidersHorizontal } from 'lucide-react'
 
-export const dynamic = 'force-dynamic'
+export const dynamicParams = true
+
+export async function generateStaticParams() {
+  const menuData = (await import('@/data/menu.json')).default
+  return Object.keys(menuData).map((category) => ({
+    category: encodeURIComponent(category),
+  }))
+}
 
 export default function CategoryPage({ params }: { params: { category: string } }) {
   const decoded = decodeURIComponent(params.category)

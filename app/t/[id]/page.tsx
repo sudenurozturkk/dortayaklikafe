@@ -4,7 +4,20 @@ import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Coffee, Loader2 } from 'lucide-react'
 
-export const dynamic = 'force-dynamic'
+export const dynamicParams = true
+
+// Static params - Masa QR kodları dinamik olduğu için fallback'e izin ver
+export async function generateStaticParams() {
+  // Örnek masa kodları - Production'da tüm masalar eklenebilir
+  return [
+    { id: 'A1' },
+    { id: 'A2' },
+    { id: 'A3' },
+    { id: 'B1' },
+    { id: 'B2' },
+    { id: 'B3' },
+  ]
+}
 
 export default function TablePage({ params }: { params: { id: string } }) {
   const router = useRouter()
