@@ -1,12 +1,14 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import { Coffee, QrCode, Sparkles } from 'lucide-react'
+import { Sparkles, Coffee } from 'lucide-react'
+import Image from 'next/image'
+import LogoImg from '@/data/dörtayaklı-removebg-preview.png'
 
 export const metadata: Metadata = {
   title: 'Dört Ayaklı Kahvaltı Kafe – QR Menü',
   description: 'Diyarbakır\'ın tarihi dokusunu ve bazalt avlusunun ruhunu taşıyan otantik dijital menü.',
   icons: { icon: '/favicon.ico' },
-  viewport: { width: 'device-width', initialScale: 1, maximumScale: 5 },
+  viewport: { width: 'device-width', initialScale: 1 },
   other: { 'theme-color': '#f7f7f7' }
 }
 
@@ -14,32 +16,64 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="tr">
       <body>
+        {/* Fullscreen background video */}
+        {/* Sadece mobilde video arka plan */}
+        <div className="fixed inset-0 z-0 pointer-events-none md:hidden">
+          <video
+            className="w-full h-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            {/* Primary ASCII filename */}
+            <source src={'/video.mp4'} type="video/mp4" />
+            {/* Fallback to original Turkish filename if present */}
+            <source src={'/dörtayaklıkafe.mp4'} type="video/mp4" />
+          </video>
+        </div>
+        {/* Masaüstünde video arka plan */}
+        <div className="fixed inset-0 z-0 pointer-events-none hidden md:block">
+          <video
+            className="w-full h-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            {/* Desktop video asset */}
+            <source src={'/dortayaklıweb.mp4'} type="video/mp4" />
+            {/* Fallbacks */}
+            <source src={'/video.mp4'} type="video/mp4" />
+            <source src={'/dörtayaklıkafe.mp4'} type="video/mp4" />
+          </video>
+        </div>
         <div className="fixed top-0 left-0 right-0 h-2 bg-gradient-to-r from-copper-600 via-terracotta-600 via-dicle-600 to-copper-600 z-50 shadow-copper"></div>
         
         <header className="border-b-4 border-basalt-700 sticky top-0 z-40 bg-gradient-to-r from-basalt-800 via-basalt-900 to-basalt-800 shadow-basalt wall-pattern">
           <div className="container">
             <div className="h-20 sm:h-24 flex items-center justify-between">
               <div className="flex items-center gap-2 sm:gap-4">
-                <div className="relative group">
-                  <div className="absolute inset-0 bg-gradient-to-br from-copper-500 to-terracotta-600 rounded-lg blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
-                  <div className="relative bg-gradient-to-br from-copper-600 via-copper-500 to-terracotta-600 p-2.5 sm:p-4 rounded-lg shadow-copper border-2 border-copper-700 wood-texture wood-grain">
-                    <Coffee className="text-basalt-50 w-5 h-5 sm:w-7 sm:h-7" />
-                  </div>
+                <div className="relative w-14 h-14 sm:w-16 sm:h-16">
+                  <Image
+                    src={LogoImg}
+                    alt="Dört Ayaklı Kahvaltı Cafe Logo"
+                    className="object-contain"
+                    fill
+                    priority
+                  />
                 </div>
                 <div>
-                  <p className="font-ottoman font-black text-lg sm:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-copper-400 via-copper-300 to-terracotta-400 tracking-wider drop-shadow-lg">
+                  <p className="font-ottoman font-black text-lg sm:text-2xl text-white tracking-wider drop-shadow-lg">
                     DÖRT AYAKLI
                   </p>
-                  <p className="text-[10px] sm:text-xs text-basalt-300 font-semibold flex items-center gap-1 sm:gap-1.5 tracking-widest uppercase mt-0.5">
-                    <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-copper-400" />
+                  <p className="text-[10px] sm:text-xs text-white font-semibold flex items-center gap-1 sm:gap-1.5 tracking-widest uppercase mt-0.5">
+                    <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white" />
                     Kahvaltı & Kafe
                   </p>
                 </div>
               </div>
-              <div className="hidden sm:flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-dicle-700 to-dicle-800 backdrop-blur-sm rounded-lg border-2 border-dicle-600 shadow-inner">
-                <QrCode className="w-5 h-5 text-dicle-200" />
-                <span className="text-sm text-dicle-100 font-bold tracking-wide">DİJİTAL MENÜ</span>
-              </div>
+              {/* Dijital menü rozeti kaldırıldı */}
             </div>
           </div>
           <div className="h-1 bg-gradient-to-r from-transparent via-copper-500 to-transparent"></div>
@@ -57,7 +91,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <div className="p-2.5 sm:p-3 bg-gradient-to-br from-copper-600 to-terracotta-600 rounded-lg shadow-copper wood-texture wood-grain">
                   <Coffee className="text-basalt-50 w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
-                <span className="font-ottoman font-black text-xl sm:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-copper-400 to-terracotta-400 tracking-wider">
+                <span className="font-ottoman font-black text-xl sm:text-2xl text-white tracking-wider">
                   DÖRT AYAKLI
                 </span>
               </div>

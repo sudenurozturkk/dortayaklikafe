@@ -68,7 +68,7 @@ body::before {
     0 0,
     100px 100px;
   pointer-events: none;
-  z-index: 0;
+  z-index: -10;
 }
 
 /* Ek taş doku detayları + 8 köşeli yıldızlar */
@@ -94,7 +94,7 @@ body::after {
     100% 100%;
   opacity: 0.6;
   pointer-events: none;
-  z-index: 0;
+  z-index: -10;
 }
 
 .container {

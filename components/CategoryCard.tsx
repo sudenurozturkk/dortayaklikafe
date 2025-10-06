@@ -24,6 +24,47 @@ export default function CategoryCard({ title, count }: { title: string; count: n
         whileTap={{ scale: 0.97 }}
         className="card card-hover p-5 sm:p-7 relative overflow-hidden group"
       >
+        {/* Ürün sayısı - kartın üstünde beyaz */}
+        <div className="absolute top-3 right-3 z-10">
+          <span className="text-white font-extrabold text-sm sm:text-base tracking-wider drop-shadow">{count} Ürün</span>
+        </div>
+        {/* Arka plan görselleri */}
+        {title === 'Yemekler & Kahvaltılar' && (
+          <>
+            <div className="absolute inset-0 -z-10">
+              <div
+                className="w-full h-full bg-center bg-cover"
+                style={{ backgroundImage: "url('/serpmekahvaltı.jpg')" }}
+                aria-hidden
+              />
+            </div>
+            <div className="absolute inset-0 bg-basalt-900/30 -z-10" />
+          </>
+        )}
+        {title === 'İçecekler' && (
+          <>
+            <div className="absolute inset-0 -z-10">
+              <div
+                className="w-full h-full bg-center bg-cover"
+                style={{ backgroundImage: "url('/icecekler.jpg')" }}
+                aria-hidden
+              />
+            </div>
+            <div className="absolute inset-0 bg-basalt-900/30 -z-10" />
+          </>
+        )}
+        {title === 'Portre Resim Çizimi' && (
+          <>
+            <div className="absolute inset-0 -z-10">
+              <div
+                className="w-full h-full bg-center bg-cover"
+                style={{ backgroundImage: "url('/porte.png')" }}
+                aria-hidden
+              />
+            </div>
+            <div className="absolute inset-0 bg-basalt-900/30 -z-10" />
+          </>
+        )}
         <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-copper-400/20 to-transparent rounded-full blur-3xl group-hover:opacity-100 opacity-50 transition-opacity"></div>
         <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-dicle-400/15 to-transparent rounded-full blur-2xl"></div>
         
@@ -36,18 +77,18 @@ export default function CategoryCard({ title, count }: { title: string; count: n
               </div>
             </div>
             <div className="flex-1">
-              <h3 className="font-ottoman font-black text-xl sm:text-2xl text-basalt-900 group-hover:text-copper-700 transition-colors tracking-wide">
+              <h3 className="font-ottoman font-black text-xl sm:text-2xl text-white transition-colors tracking-wide">
                 {title}
               </h3>
-              <p className="text-xs sm:text-sm text-basalt-500 mt-1 font-semibold tracking-wide">Menüyü Keşfet</p>
+              <p className="text-xs sm:text-sm text-white/80 mt-1 font-semibold tracking-wide">Menüyü Keşfet</p>
             </div>
           </div>
           
           <div className="flex items-center justify-between pt-4 border-t-2 border-basalt-200">
-            <span className="badge" aria-label={`${count} ürün`}>
+            <span className="sr-only" aria-label={`${count} ürün`}>
               {count} Ürün
             </span>
-            <div className="flex items-center gap-1 text-copper-600 group-hover:gap-3 transition-all font-bold text-sm">
+            <div className="flex items-center gap-1 text-white group-hover:gap-3 transition-all font-bold text-sm">
               <span className="tracking-wide">GÖRÜNTÜLE</span>
               <ChevronRight className="w-5 h-5" />
             </div>

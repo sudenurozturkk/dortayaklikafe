@@ -2,29 +2,34 @@
 import menuData from '@/data/menu.json'
 import ProductRow from '@/components/ProductRow'
 import Link from 'next/link'
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowLeft, SlidersHorizontal } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 
 export default function CategoryPage({ params }: { params: { category: string } }) {
   const decoded = decodeURIComponent(params.category)
   const items = (menuData as any)[decoded] || []
 
-  const [sort, setSort] = useState<'az'|'za'|'low'|'high'>('az')
+  const sorted = useMemo(()=>[...items], [items])
 
-  const sorted = useMemo(()=>{
-    const result = [...items]
-    switch (sort) {
-      case 'az': result.sort((a,b)=>a.name.localeCompare(b.name,'tr')); break
-      case 'za': result.sort((a,b)=>b.name.localeCompare(a.name,'tr')); break
-      case 'low': result.sort((a,b)=>a.price-b.price); break
-      case 'high': result.sort((a,b)=>b.price-a.price); break
+  const isDrinks = decoded === 'İçecekler'
+  const { hotDrinks, coldDrinks } = useMemo(()=>{
+    if (!isDrinks) return { hotDrinks: [], coldDrinks: [] }
+    const hotKeywords = ['çay','kahve','salep','sıcak çikolata']
+    const coldKeywords = ['su','limonata','şerbet','suyu','soda']
+    const hot: any[] = []
+    const cold: any[] = []
+    for (const it of items as any[]) {
+      const n = (it.name as string).toLowerCase()
+      if (hotKeywords.some(k=>n.includes(k))) hot.push(it)
+      else if (coldKeywords.some(k=>n.includes(k))) cold.push(it)
+      else cold.push(it)
     }
-    return result
-  }, [items,sort])
+    return { hotDrinks: hot, coldDrinks: cold }
+  }, [isDrinks, items])
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 bg-basalt-900/90 -mx-4 px-4 sm:mx-0 sm:px-0 rounded-lg">
       <motion.div 
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
@@ -38,54 +43,53 @@ export default function CategoryPage({ params }: { params: { category: string } 
           <span className="text-sm font-bold text-basalt-100 group-hover:text-white uppercase tracking-wide font-ottoman">Ana Sayfa</span>
         </Link>
         <div className="hidden sm:block h-8 w-px bg-basalt-400"></div>
-        <h1 className="text-3xl md:text-4xl font-ottoman font-black bg-gradient-to-r from-copper-600 to-terracotta-600 bg-clip-text text-transparent tracking-wider">
+        <h1 className="text-3xl md:text-4xl font-ottoman font-black text-white tracking-wider drop-shadow">
           {decoded.toUpperCase()}
         </h1>
       </motion.div>
 
-      <motion.div 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1 }}
-        className="card p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:justify-between"
-      >
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
-          <div className="flex items-center gap-2.5 text-basalt-700">
-            <SlidersHorizontal className="w-5 h-5" />
-            <label className="text-sm font-bold uppercase tracking-wider font-ottoman">Sırala:</label>
-          </div>
-          <select 
-            value={sort} 
-            onChange={(e)=>setSort(e.target.value as any)}
-            className="input-field pr-10 cursor-pointer font-semibold w-full sm:w-auto"
-          >
-            <option value="az">A → Z</option>
-            <option value="za">Z → A</option>
-            <option value="low">Fiyat (Artan)</option>
-            <option value="high">Fiyat (Azalan)</option>
-          </select>
-        </div>
-      </motion.div>
+      {/* Sıralama kaldırıldı */}
 
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="card p-4 sm:p-6 md:p-8"
+        className="bg-basalt-900/70 p-4 sm:p-6 md:p-8 rounded-lg border-2 border-basalt-700 shadow-basalt"
       >
-        <div className="mb-6 pb-4 border-b-2 border-basalt-300 flex items-center justify-between">
-          <p className="text-sm text-basalt-600 font-semibold uppercase tracking-wider">
-            <span className="font-black text-copper-700 text-2xl mr-2">{sorted.length}</span> 
+        <div className="mb-6 pb-4 border-b-2 border-basalt-700 flex items-center justify-between">
+          <p className="text-sm text-white font-semibold uppercase tracking-wider">
+            <span className="font-black text-white text-2xl mr-2">{sorted.length}</span>
             Ürün
           </p>
           <div className="h-px flex-1 max-w-xs bg-gradient-to-r from-transparent to-copper-400 ml-6"></div>
         </div>
         
-        <div className="space-y-1">
-          {sorted.map((it:any, idx:number)=> (
-            <ProductRow key={idx} item={it} />
-          ))}
-        </div>
+        {isDrinks ? (
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-white font-bold mb-3">Sıcak İçecekler</h2>
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                {hotDrinks.map((it:any, idx:number)=> (
+                  <ProductRow key={`h-${idx}`} item={it} />
+                ))}
+              </div>
+            </div>
+            <div>
+              <h2 className="text-white font-bold mb-3">Soğuk İçecekler</h2>
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                {coldDrinks.map((it:any, idx:number)=> (
+                  <ProductRow key={`c-${idx}`} item={it} />
+                ))}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 gap-3 sm:gap-4">
+            {sorted.map((it:any, idx:number)=> (
+              <ProductRow key={idx} item={it} />
+            ))}
+          </div>
+        )}
       </motion.div>
     </div>
   )
