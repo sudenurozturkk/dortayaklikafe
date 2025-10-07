@@ -2,71 +2,94 @@
   "İçecekler": [
     {
       "name": "Çay",
-      "price": 30
+      "price": 30,
+      "type": "hot",
+      "image": "/cay.png"
     },
     {
       "name": "Su",
-      "price": 30
+      "price": 30,
+      "type": "cold"
     },
     {
       "name": "Türk Kahvesi",
-      "price": 80
+      "price": 80,
+      "type": "hot",
+      "image": "/turkkahvesi.png"
     },
     {
       "name": "Dibek Kahvesi",
-      "price": 100
+      "price": 100,
+      "type": "hot",
+      "image": "/dibek.png"
     },
     {
       "name": "Menengiç Kahvesi",
-      "price": 100
+      "price": 100,
+      "type": "hot",
+      "image": "/menengic.png"
     },
     {
       "name": "Kürt Kahvesi",
-      "price": 100
+      "price": 100,
+      "type": "hot",
+      "image": "/kurtkahve.png"
     },
     {
       "name": "Limonata",
-      "price": 80
+      "price": 80,
+      "type": "cold"
     },
     {
       "name": "Karadut Şerbeti",
-      "price": 80
+      "price": 80,
+      "type": "cold"
     },
     {
       "name": "Vişne Suyu",
-      "price": 80
+      "price": 80,
+      "type": "cold"
     },
     {
       "name": "Portakal Suyu",
-      "price": 80
+      "price": 80,
+      "type": "cold"
     },
     {
       "name": "Karışık Meyve Suyu",
-      "price": 80
+      "price": 80,
+      "type": "cold"
     },
     {
       "name": "Şeftali Suyu",
-      "price": 80
+      "price": 80,
+      "type": "cold"
     },
     {
       "name": "Salep",
-      "price": 100
+      "price": 100,
+      "type": "hot",
+      "image": "/salep.png"
     },
     {
       "name": "Sıcak Çikolata",
-      "price": 100
+      "price": 100,
+      "type": "hot"
     },
     {
       "name": "Soda",
-      "price": 60
+      "price": 60,
+      "type": "cold"
     },
     {
       "name": "Filtre Kahve",
-      "price": 80
+      "price": 80,
+      "type": "hot"
     },
     {
       "name": "Double Kahve",
-      "price": 120
+      "price": 120,
+      "type": "hot"
     }
   ],
   "Portre Resim Çizimi": [

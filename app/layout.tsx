@@ -9,7 +9,22 @@ export const metadata: Metadata = {
   description: 'Diyarbakır\'ın tarihi dokusunu ve bazalt avlusunun ruhunu taşıyan otantik dijital menü.',
   icons: { icon: '/favicon.ico' },
   viewport: { width: 'device-width', initialScale: 1 },
-  other: { 'theme-color': '#f7f7f7' }
+  other: { 'theme-color': '#f7f7f7' },
+  openGraph: {
+    title: 'Dört Ayaklı Kahvaltı Kafe – QR Menü',
+    description: 'Diyarbakır\'ın tarihi dokusunu ve bazalt avlusunun ruhunu taşıyan otantik dijital menü.',
+    url: 'https://example.com',
+    siteName: 'Dört Ayaklı Kafe',
+    images: [{ url: '/bazalt.jpg', width: 1200, height: 630 }],
+    locale: 'tr_TR',
+    type: 'website'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Dört Ayaklı Kahvaltı Kafe – QR Menü',
+    description: 'Diyarbakır\'ın tarihi dokusunu ve bazalt avlusunun ruhunu taşıyan otantik dijital menü.',
+    images: ['/bazalt.jpg']
+  }
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

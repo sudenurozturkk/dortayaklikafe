@@ -15,16 +15,8 @@ export default function CategoryPage({ params }: { params: { category: string } 
   const isDrinks = decoded === 'İçecekler'
   const { hotDrinks, coldDrinks } = useMemo(()=>{
     if (!isDrinks) return { hotDrinks: [], coldDrinks: [] }
-    const hotKeywords = ['çay','kahve','salep','sıcak çikolata']
-    const coldKeywords = ['su','limonata','şerbet','suyu','soda']
-    const hot: any[] = []
-    const cold: any[] = []
-    for (const it of items as any[]) {
-      const n = (it.name as string).toLowerCase()
-      if (hotKeywords.some(k=>n.includes(k))) hot.push(it)
-      else if (coldKeywords.some(k=>n.includes(k))) cold.push(it)
-      else cold.push(it)
-    }
+    const hot = (items as any[]).filter((it)=> it.type === 'hot')
+    const cold = (items as any[]).filter((it)=> it.type === 'cold')
     return { hotDrinks: hot, coldDrinks: cold }
   }, [isDrinks, items])
 
@@ -68,7 +60,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
           <div className="space-y-6">
             <div>
               <h2 className="text-white font-bold mb-3">Sıcak İçecekler</h2>
-              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
                 {hotDrinks.map((it:any, idx:number)=> (
                   <ProductRow key={`h-${idx}`} item={it} />
                 ))}
@@ -76,7 +68,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
             </div>
             <div>
               <h2 className="text-white font-bold mb-3">Soğuk İçecekler</h2>
-              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
                 {coldDrinks.map((it:any, idx:number)=> (
                   <ProductRow key={`c-${idx}`} item={it} />
                 ))}
@@ -84,7 +76,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-2 gap-3 sm:gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
             {sorted.map((it:any, idx:number)=> (
               <ProductRow key={idx} item={it} />
             ))}

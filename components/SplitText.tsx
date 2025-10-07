@@ -1,10 +1,6 @@
 'use client'
-import React, { useMemo, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import React, { useMemo, useRef, useEffect, useState } from 'react'
 import { useGSAP } from '@gsap/react'
-
-gsap.registerPlugin(ScrollTrigger, useGSAP)
 
 export interface SplitTextProps {
   text: string
@@ -52,10 +48,15 @@ export default function SplitText({
     return Array.from(text).map((ch) => (ch === ' ' ? '\u00A0' : ch))
   }, [text, splitType])
 
-  useGSAP(() => {
+  useGSAP(async () => {
     if (!rootRef.current) return
-    const spans = rootRef.current.querySelectorAll<HTMLSpanElement>('[data-piece]')
+    const [{ gsap }, { ScrollTrigger }] = await Promise.all([
+      import('gsap'),
+      import('gsap/ScrollTrigger')
+    ])
+    gsap.registerPlugin(ScrollTrigger)
 
+    const spans = rootRef.current.querySelectorAll<HTMLSpanElement>('[data-piece]')
     const startPct = Math.max(0, Math.min(1, 1 - (threshold ?? 0.2))) * 100
     const start = `top ${startPct}% ${rootMargin || '0px'}`
 

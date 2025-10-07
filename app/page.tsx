@@ -7,9 +7,15 @@ import { Sparkles } from 'lucide-react'
 import SplitText from '@/components/SplitText'
 
 export default function Page() {
+  const uiMap: Record<string, { bg?: string; accent?: 'dark'|'light' }> = {
+    'İçecekler': { bg: '/icecekler.jpg', accent: 'dark' },
+    'Yemekler & Kahvaltılar': { bg: '/serpmekahvaltı.jpg', accent: 'dark' },
+    'Portre Resim Çizimi': { bg: '/porte.png', accent: 'dark' },
+  }
+
   const categories = useMemo(() =>
     Object.entries(menuData as Record<string, any>)
-      .map(([k,v])=>({ title:k, count:(v as any[]).length }))
+      .map(([k,v])=>({ title:k, count:(v as any[]).length, ...uiMap[k] }))
   , [])
 
   return (
@@ -58,7 +64,7 @@ export default function Page() {
               visible: { opacity: 1, y: 0 }
             }}
           >
-            <CategoryCard title={title} count={count} />
+            <CategoryCard title={title} count={count} backgroundImage={(uiMap[title]?.bg)} accent={(uiMap[title]?.accent) as any} />
           </motion.div>
         ))}
       </motion.div>

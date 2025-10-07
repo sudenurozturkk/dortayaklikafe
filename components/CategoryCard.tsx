@@ -14,7 +14,7 @@ const categoryIcons: Record<string, any> = {
   "Salatalar": Salad,
 }
 
-export default function CategoryCard({ title, count }: { title: string; count: number }) {
+export default function CategoryCard({ title, count, backgroundImage, accent = 'dark' }: { title: string; count: number; backgroundImage?: string; accent?: 'dark'|'light' }) {
   const Icon = categoryIcons[title] || Coffee
   
   return (
@@ -28,41 +28,13 @@ export default function CategoryCard({ title, count }: { title: string; count: n
         <div className="absolute top-3 right-3 z-10">
           <span className="text-white font-extrabold text-sm sm:text-base tracking-wider drop-shadow">{count} Ürün</span>
         </div>
-        {/* Arka plan görselleri */}
-        {title === 'Yemekler & Kahvaltılar' && (
+        {/* Arka plan görseli props ile kontrol edilir */}
+        {backgroundImage && (
           <>
             <div className="absolute inset-0 -z-10">
-              <div
-                className="w-full h-full bg-center bg-cover"
-                style={{ backgroundImage: "url('/serpmekahvaltı.jpg')" }}
-                aria-hidden
-              />
+              <div className="w-full h-full bg-center bg-cover" style={{ backgroundImage: `url('${backgroundImage}')` }} aria-hidden />
             </div>
-            <div className="absolute inset-0 bg-basalt-900/30 -z-10" />
-          </>
-        )}
-        {title === 'İçecekler' && (
-          <>
-            <div className="absolute inset-0 -z-10">
-              <div
-                className="w-full h-full bg-center bg-cover"
-                style={{ backgroundImage: "url('/icecekler.jpg')" }}
-                aria-hidden
-              />
-            </div>
-            <div className="absolute inset-0 bg-basalt-900/30 -z-10" />
-          </>
-        )}
-        {title === 'Portre Resim Çizimi' && (
-          <>
-            <div className="absolute inset-0 -z-10">
-              <div
-                className="w-full h-full bg-center bg-cover"
-                style={{ backgroundImage: "url('/porte.png')" }}
-                aria-hidden
-              />
-            </div>
-            <div className="absolute inset-0 bg-basalt-900/30 -z-10" />
+            <div className={`absolute inset-0 ${accent === 'dark' ? 'bg-basalt-900/30' : 'bg-white/20'} -z-10`} />
           </>
         )}
         <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-copper-400/20 to-transparent rounded-full blur-3xl group-hover:opacity-100 opacity-50 transition-opacity"></div>
