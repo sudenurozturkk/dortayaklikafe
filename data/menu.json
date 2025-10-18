@@ -9,7 +9,8 @@
     {
       "name": "Su",
       "price": 30,
-      "type": "cold"
+      "type": "cold",
+      "image": "/su.jpg"
     },
     {
       "name": "Türk Kahvesi",
@@ -38,32 +39,38 @@
     {
       "name": "Limonata",
       "price": 80,
-      "type": "cold"
+      "type": "cold",
+      "image": "/limonata.png"
     },
     {
       "name": "Karadut Şerbeti",
       "price": 80,
-      "type": "cold"
+      "type": "cold",
+      "image": "/karadurserbeti.png"
     },
     {
       "name": "Vişne Suyu",
       "price": 80,
-      "type": "cold"
+      "type": "cold",
+      "image": "/visnesuyu.png"
     },
     {
       "name": "Portakal Suyu",
       "price": 80,
-      "type": "cold"
+      "type": "cold",
+      "image": "/portakalsuyu.png"
     },
     {
       "name": "Karışık Meyve Suyu",
       "price": 80,
-      "type": "cold"
+      "type": "cold",
+      "image": "/karısıkmeyvesuyu.png"
     },
     {
       "name": "Şeftali Suyu",
       "price": 80,
-      "type": "cold"
+      "type": "cold",
+      "image": "/seftalisuyuu.png"
     },
     {
       "name": "Salep",
@@ -74,51 +81,61 @@
     {
       "name": "Sıcak Çikolata",
       "price": 100,
-      "type": "hot"
+      "type": "hot",
+      "image": "/sıcakcikolata.png"
     },
     {
       "name": "Soda",
       "price": 60,
-      "type": "cold"
+      "type": "cold",
+      "image": "/soda.jpg"
     },
     {
       "name": "Filtre Kahve",
       "price": 80,
-      "type": "hot"
+      "type": "hot",
+      "image": "/filtrekahve.png"
     },
     {
       "name": "Double Kahve",
       "price": 120,
-      "type": "hot"
+      "type": "hot",
+      "image": "/doublekahve.jpg"
     }
   ],
   "Portre Resim Çizimi": [
     {
       "name": "Porte Resim Çizimli Özel Kahve",
       "price": 200,
-      "desc": "İstediğiniz bir kahveyi alıp 5-8 dakikada canlı portrenizi karton kahve bardağına yaptırabilirsiniz"
+      "desc": "İstediğiniz bir kahveyi alıp 5-8 dakikada canlı portrenizi karton kahve bardağına yaptırabilirsiniz",
+      "image": "/porte.png"
     }
   ],
   "Yemekler & Kahvaltılar": [
     {
       "name": "Menemen",
-      "price": 150
+      "price": 150,
+      "image": "/menemen.jpg"
     },
     {
       "name": "Kavurmalı Yumurta",
-      "price": 180
+      "price": 180,
+      "image": "/kavurmalıyumurta.jpg"
     },
     {
       "name": "Patates Kızartması",
-      "price": 120
+      "price": 120,
+      "image": "/patateskızartması.jpg"
     },
     {
       "name": "Serpme Kahvaltı Tabağı",
-      "price": 200
+      "price": 200,
+      "image": "/Kahvaltı.jpg"
     },
     {
       "name": "2 Kişilik Serpme Kahvaltı",
-      "price": 450
+      "price": 450,
+      "image": "/serpmekahvaltı.jpg"
     }
   ]
 }

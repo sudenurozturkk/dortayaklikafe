@@ -13,10 +13,14 @@ export default function Page() {
     'Portre Resim Çizimi': { bg: '/porte.png', accent: 'dark' },
   }
 
-  const categories = useMemo(() =>
-    Object.entries(menuData as Record<string, any>)
-      .map(([k,v])=>({ title:k, count:(v as any[]).length, ...uiMap[k] }))
-  , [])
+  const categories = useMemo(() => {
+    // Mobilde istenen sıralama: İçecekler, Yemekler & Kahvaltılar, Portre Resim Çizimi
+    const categoryOrder = ['İçecekler', 'Yemekler & Kahvaltılar', 'Portre Resim Çizimi']
+    
+    return categoryOrder
+      .map(k => ({ title: k, count: (menuData as any)[k]?.length || 0, ...uiMap[k] }))
+      .filter(cat => cat.count > 0) // Sadece içeriği olan kategorileri göster
+  }, [])
 
   return (
     <div className="space-y-8">

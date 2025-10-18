@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { Sparkles, Coffee } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import LogoImg from '@/data/dörtayaklı-removebg-preview.png'
 
 export const metadata: Metadata = {
@@ -68,7 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className="border-b-4 border-basalt-700 sticky top-0 z-40 bg-gradient-to-r from-basalt-800 via-basalt-900 to-basalt-800 shadow-basalt wall-pattern">
           <div className="container">
             <div className="h-20 sm:h-24 flex items-center justify-between">
-              <div className="flex items-center gap-2 sm:gap-4">
+              <Link href="/" className="flex items-center gap-2 sm:gap-4 hover:opacity-90 transition-opacity">
                 <div className="relative w-14 h-14 sm:w-16 sm:h-16">
                   <Image
                     src={LogoImg}
@@ -87,7 +88,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     Kahvaltı & Kafe
                   </p>
                 </div>
-              </div>
+              </Link>
               {/* Dijital menü rozeti kaldırıldı */}
             </div>
           </div>
@@ -103,8 +104,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="container py-8 sm:py-12">
             <div className="flex flex-col items-center gap-4 sm:gap-5">
               <div className="flex items-center gap-3 sm:gap-4">
-                <div className="p-2.5 sm:p-3 bg-gradient-to-br from-copper-600 to-terracotta-600 rounded-lg shadow-copper wood-texture wood-grain">
-                  <Coffee className="text-basalt-50 w-5 h-5 sm:w-6 sm:h-6" />
+                <div className="relative w-12 h-12 sm:w-14 sm:h-14">
+                  <Image
+                    src={LogoImg}
+                    alt="Dört Ayaklı Kahvaltı Cafe Logo"
+                    className="object-contain"
+                    fill
+                    priority
+                  />
                 </div>
                 <span className="font-ottoman font-black text-xl sm:text-2xl text-white tracking-wider">
                   DÖRT AYAKLI
