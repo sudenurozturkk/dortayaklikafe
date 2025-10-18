@@ -136,7 +136,7 @@ npm run build
 
 ## 🤝 Destek
 
-Sorularınız için: [info@dortayakli.com](mailto:info@dortayakli.com)
+Sorularınız için: [whodenur@gmail.com](mailto:whodenur@gmail.com)
 
 ---
 
