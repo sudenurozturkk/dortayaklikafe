@@ -125,9 +125,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     priority
                   />
                 </div>
-                <span className="font-ottoman font-black text-xl sm:text-2xl text-white tracking-wider">
-                  DÖRT AYAKLI
-                </span>
+                <div className="flex flex-col">
+                  <span className="font-ottoman font-black text-xl sm:text-2xl text-white tracking-wider">
+                    DÖRT AYAKLI
+                  </span>
+                  <span className="text-[10px] sm:text-xs text-white/90 font-semibold tracking-widest uppercase">
+                    Kahvaltı & Kafe
+                  </span>
+                </div>
               </div>
               <p className="text-basalt-300 text-xs sm:text-sm text-center max-w-md leading-relaxed px-4">
                 Diyarbakır'ın tarihi dokusunu ve bazalt avlusunun otantik ruhunu sofranıza taşıyoruz
