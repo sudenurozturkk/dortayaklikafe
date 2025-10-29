@@ -42,21 +42,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="tr">
       <body style={bodyStyle}>
-        {/* Fullscreen background video */}
-        {/* Sadece mobilde video arka plan */}
-        <div className="fixed inset-0 z-0 pointer-events-none md:hidden">
-          <video
-            className="w-full h-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-          >
-            {/* Primary ASCII filename */}
-            <source src={asset('/video.mp4')} type="video/mp4" />
-            {/* Fallback to original Turkish filename if present */}
-            <source src={asset('/dörtayaklıkafe.mp4')} type="video/mp4" />
-          </video>
+        {/* Mobilde statik arka plan */}
+        <div className="fixed inset-0 z-0 pointer-events-none md:hidden" aria-hidden>
+          <div className="w-full h-full bg-gradient-to-b from-basalt-900 via-basalt-950 to-basalt-900 opacity-90" />
         </div>
         {/* Masaüstünde video arka plan */}
         <div className="fixed inset-0 z-0 pointer-events-none hidden md:block">
@@ -66,6 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             muted
             loop
             playsInline
+            preload="metadata"
           >
             {/* Desktop video asset */}
             <source src={asset('/dortayaklıweb.mp4')} type="video/mp4" />

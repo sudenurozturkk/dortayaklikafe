@@ -33,7 +33,8 @@ export default function Page() {
         <SplitText
           tag="h1"
           text="MENÜMÜZÜ KEŞFEDİN"
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-ottoman font-extrabold text-white tracking-wide drop-shadow-xl px-4 text-balance"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-ottoman font-extrabold text-white tracking-wide drop-shadow-xl px-4 text-balance text-center"
+          splitType="words"
           allowWrap
           delayMs={35}
         />
