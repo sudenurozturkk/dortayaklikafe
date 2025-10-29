@@ -1,20 +1,23 @@
+const repoName = 'dortayaklikafe'
+const githubDomain = 'https://sudenurozturk.github.io'
+const isGitHubActions = process.env.GITHUB_ACTIONS === 'true'
+
+const computedBasePath = isGitHubActions ? `/${repoName}` : ''
+const computedSiteUrl = isGitHubActions ? `${githubDomain}/${repoName}` : 'http://localhost:3000'
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  images: {
-    formats: ['image/avif', 'image/webp']
+  output: 'export',
+  basePath: computedBasePath,
+  assetPrefix: computedBasePath || undefined,
+  env: {
+    NEXT_PUBLIC_BASE_PATH: computedBasePath,
+    NEXT_PUBLIC_SITE_URL: computedSiteUrl
   },
-  async headers() {
-    return [
-      {
-        source: '/:path*',
-        headers: [
-          { key: 'X-Content-Type-Options', value: 'nosniff' },
-          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-          { key: 'Permissions-Policy', value: 'geolocation=(), microphone=(), camera=()' }
-        ]
-      }
-    ]
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    unoptimized: true
   }
 }
 

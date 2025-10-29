@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { QRCodeCanvas } from 'qrcode.react'
 import { motion } from 'framer-motion'
 import { QrCode, Download, Eye, Printer } from 'lucide-react'
+import { absoluteUrl } from '@/lib/paths'
 
 export default function QRPage(){
   const [table, setTable] = useState('A1')
@@ -16,8 +17,7 @@ export default function QRPage(){
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
-  const base = typeof window !== 'undefined' ? window.location.origin : ''
-  const url = `${base}/t/${encodeURIComponent(table)}`
+  const url = absoluteUrl(`/t/${encodeURIComponent(table)}`)
   
   const downloadQR = () => {
     const canvas = document.querySelector('canvas')

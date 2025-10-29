@@ -75,6 +75,10 @@ Menüyü düzenlemek için `data/menu.json` dosyasını güncelleyin:
 }
 ```
 
+## 🪑 Masa Kodları
+
+GitHub Pages dağıtımı sırasında hangi masa kodları için `/t/<kod>` sayfasının üretileceğini `data/tables.json` dosyası belirler. Listede bulunan her kod için statik sayfa oluşturulur; QR üretici de varsayılan olarak bu yapıyı kullanır. Kendi masa düzeninize göre kod listesini güncelleyin.
+
 ## 🔗 QR Kod Kullanımı
 
 1. `/qr` sayfasına gidin

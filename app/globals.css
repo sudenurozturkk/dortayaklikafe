@@ -6,6 +6,7 @@
 
 :root {
   color-scheme: light;
+  --bazalt-bg: url('/bazalt.jpg');
 }
 
 html, body {
@@ -105,7 +106,7 @@ body::after {
   @apply bg-gradient-to-br from-white via-basalt-50 to-white backdrop-blur-xl rounded-lg shadow-basalt border-2 border-basalt-200 hover:border-copper-400 transition-all duration-300;
   background-image: 
     linear-gradient(to bottom right, rgba(255, 255, 255, 0.9), rgba(247, 247, 247, 0.85)),
-    url('/bazalt.jpg');
+    var(--bazalt-bg, url('/bazalt.jpg'));
   background-size: cover, cover;
   background-position: center, center;
   background-blend-mode: normal, normal;

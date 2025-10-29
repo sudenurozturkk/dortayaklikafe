@@ -3,14 +3,14 @@ import menuData from '@/data/menu.json'
 import CategoryCard from '@/components/CategoryCard'
 import { useMemo } from 'react'
 import { motion } from 'framer-motion'
-import { Sparkles } from 'lucide-react'
 import SplitText from '@/components/SplitText'
+import { asset } from '@/lib/paths'
 
 export default function Page() {
   const uiMap: Record<string, { bg?: string; accent?: 'dark'|'light' }> = {
-    'İçecekler': { bg: '/icecekler.jpg', accent: 'dark' },
-    'Yemekler & Kahvaltılar': { bg: '/serpmekahvaltı.jpg', accent: 'dark' },
-    'Portre Resim Çizimi': { bg: '/porte.png', accent: 'dark' },
+    'İçecekler': { bg: asset('/icecekler.jpg'), accent: 'dark' },
+    'Yemekler & Kahvaltılar': { bg: asset('/serpmekahvaltı.jpg'), accent: 'dark' },
+    'Portre Resim Çizimi': { bg: asset('/porte.png'), accent: 'dark' },
   }
 
   const categories = useMemo(() => {

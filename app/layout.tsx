@@ -1,37 +1,47 @@
-import type { Metadata } from 'next'
+import type { CSSProperties } from 'react'
+import type { Metadata, Viewport } from 'next'
 import './globals.css'
-import { Sparkles, Coffee } from 'lucide-react'
+import { Sparkles } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import LogoImg from '@/data/dörtayaklı-removebg-preview.png'
+import { asset, absoluteUrl } from '@/lib/paths'
 
 export const metadata: Metadata = {
   title: 'Dört Ayaklı Kahvaltı Kafe – QR Menü',
-  description: 'Diyarbakır\'ın tarihi dokusunu ve bazalt avlusunun ruhunu taşıyan otantik dijital menü.',
-  icons: { icon: '/favicon.ico' },
-  viewport: { width: 'device-width', initialScale: 1 },
+  description: "Diyarbakır'ın tarihi dokusunu ve bazalt avlusunun ruhunu taşıyan otantik dijital menü.",
+  icons: { icon: asset('/favicon.ico') },
   other: { 'theme-color': '#f7f7f7' },
   openGraph: {
     title: 'Dört Ayaklı Kahvaltı Kafe – QR Menü',
-    description: 'Diyarbakır\'ın tarihi dokusunu ve bazalt avlusunun ruhunu taşıyan otantik dijital menü.',
-    url: 'https://example.com',
+    description: "Diyarbakır'ın tarihi dokusunu ve bazalt avlusunun ruhunu taşıyan otantik dijital menü.",
+    url: absoluteUrl(),
     siteName: 'Dört Ayaklı Kafe',
-    images: [{ url: '/bazalt.jpg', width: 1200, height: 630 }],
+    images: [{ url: absoluteUrl('/bazalt.jpg'), width: 1200, height: 630 }],
     locale: 'tr_TR',
     type: 'website'
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Dört Ayaklı Kahvaltı Kafe – QR Menü',
-    description: 'Diyarbakır\'ın tarihi dokusunu ve bazalt avlusunun ruhunu taşıyan otantik dijital menü.',
-    images: ['/bazalt.jpg']
+    description: "Diyarbakır'ın tarihi dokusunu ve bazalt avlusunun ruhunu taşıyan otantik dijital menü.",
+    images: [absoluteUrl('/bazalt.jpg')]
   }
 }
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1
+}
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const bodyStyle = {
+    '--bazalt-bg': `url(${asset('/bazalt.jpg')})`
+  } as CSSProperties
+
   return (
     <html lang="tr">
-      <body>
+      <body style={bodyStyle}>
         {/* Fullscreen background video */}
         {/* Sadece mobilde video arka plan */}
         <div className="fixed inset-0 z-0 pointer-events-none md:hidden">
@@ -43,9 +53,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             playsInline
           >
             {/* Primary ASCII filename */}
-            <source src={'/video.mp4'} type="video/mp4" />
+            <source src={asset('/video.mp4')} type="video/mp4" />
             {/* Fallback to original Turkish filename if present */}
-            <source src={'/dörtayaklıkafe.mp4'} type="video/mp4" />
+            <source src={asset('/dörtayaklıkafe.mp4')} type="video/mp4" />
           </video>
         </div>
         {/* Masaüstünde video arka plan */}
@@ -58,10 +68,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             playsInline
           >
             {/* Desktop video asset */}
-            <source src={'/dortayaklıweb.mp4'} type="video/mp4" />
+            <source src={asset('/dortayaklıweb.mp4')} type="video/mp4" />
             {/* Fallbacks */}
-            <source src={'/video.mp4'} type="video/mp4" />
-            <source src={'/dörtayaklıkafe.mp4'} type="video/mp4" />
+            <source src={asset('/video.mp4')} type="video/mp4" />
+            <source src={asset('/dörtayaklıkafe.mp4')} type="video/mp4" />
           </video>
         </div>
         <div className="fixed top-0 left-0 right-0 h-2 bg-gradient-to-r from-copper-600 via-terracotta-600 via-dicle-600 to-copper-600 z-50 shadow-copper"></div>
