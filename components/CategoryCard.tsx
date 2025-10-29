@@ -18,7 +18,10 @@ export default function CategoryCard({ title, count, backgroundImage, accent = '
   const Icon = categoryIcons[title] || Coffee
   
   return (
-    <Link href={`/menu/${encodeURIComponent(title)}`} className="group">
+    <Link
+      href={{ pathname: '/menu/[category]', query: { category: title } }}
+      className="group"
+    >
       <motion.div 
         whileHover={{ scale: 1.03, y: -6 }} 
         whileTap={{ scale: 0.97 }}

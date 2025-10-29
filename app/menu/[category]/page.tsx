@@ -9,11 +9,14 @@ const menu = menuData as Record<string, any[]>
 export function generateStaticParams() {
   return Object.keys(menu)
     .filter((category) => Array.isArray(menu[category]) && (menu[category] as unknown[]).length > 0)
-    .map((category) => ({ category: encodeURIComponent(category) }))
+    .map((category) => ({ category }))
 }
 
 export default function CategoryPage({ params }: { params: { category: string } }) {
-  const decoded = decodeURIComponent(params.category)
+  let decoded = decodeURIComponent(params.category)
+  if (!menu[decoded] && decoded.includes('%')) {
+    decoded = decodeURIComponent(decoded)
+  }
   const items = (menu[decoded] as any[]) || []
 
   if (!items.length) {

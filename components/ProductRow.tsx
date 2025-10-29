@@ -1,8 +1,15 @@
 import { MenuItem } from "@/lib/types"
 import { toTRY } from "@/lib/format"
 import { motion } from "framer-motion"
+import { asset } from "@/lib/paths"
 
 export default function ProductRow({ item }: { item: MenuItem }) {
+  const imageUrl = item.image
+    ? item.image.startsWith('http')
+      ? item.image
+      : asset(item.image)
+    : undefined
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 5 }}
@@ -10,10 +17,10 @@ export default function ProductRow({ item }: { item: MenuItem }) {
       className="group flex flex-col justify-between p-2 sm:p-3 rounded-lg border-2 border-basalt-700 bg-basalt-900/60 h-full min-h-72 md:min-h-80"
     >
       <div className="w-full">
-        {item.image && (
+        {imageUrl && (
           <div className="mb-2 rounded-md overflow-hidden border border-basalt-700">
             <img 
-              src={item.image} 
+              src={imageUrl} 
               alt={item.name} 
               className="w-full h-64 sm:h-80 md:h-96 lg:h-[28rem] object-contain bg-basalt-800"
             />
