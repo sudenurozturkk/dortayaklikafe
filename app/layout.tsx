@@ -42,7 +42,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="tr">
       <body style={bodyStyle}>
-        <div className="fixed inset-0 z-0 pointer-events-none" aria-hidden>
+        {/* Mobilde statik arka plan - performans için video yok */}
+        <div className="fixed inset-0 z-0 pointer-events-none md:hidden" aria-hidden>
           <div
             className="w-full h-full"
             style={{
@@ -53,6 +54,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               transform: 'translateZ(0)'
             }}
           />
+        </div>
+        {/* Masaüstünde video arka plan */}
+        <div className="fixed inset-0 z-0 pointer-events-none hidden md:block">
+          <video
+            className="w-full h-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          >
+            <source src={asset('/dortayaklıweb.mp4')} type="video/mp4" />
+            <source src={asset('/dörtayaklıkafe.mp4')} type="video/mp4" />
+          </video>
         </div>
         <div className="fixed top-0 left-0 right-0 h-2 bg-gradient-to-r from-copper-600 via-terracotta-600 via-dicle-600 to-copper-600 z-50 shadow-copper"></div>
         
