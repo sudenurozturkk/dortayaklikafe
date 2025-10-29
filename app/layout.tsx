@@ -42,8 +42,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="tr">
       <body style={bodyStyle}>
-        {/* Video arka plan - tüm cihazlarda */}
-        <div className="fixed inset-0 z-0 pointer-events-none">
+        {/* Mobil için küçük video (dörtayaklıkafe.mp4) */}
+        <div className="fixed inset-0 z-0 pointer-events-none md:hidden">
           <video
             className="w-full h-full object-cover"
             autoPlay
@@ -53,12 +53,29 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             preload="metadata"
             poster={asset('/bazalt.jpg')}
           >
-            <source src={asset('/dortayaklıweb.mp4')} type="video/mp4" />
             <source src={asset('/dörtayaklıkafe.mp4')} type="video/mp4" />
           </video>
           {/* Video üzerine gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-basalt-900/20 via-transparent to-basalt-900/40"></div>
         </div>
+        
+        {/* Masaüstü için kaliteli video (dortayaklıweb.mp4) */}
+        <div className="fixed inset-0 z-0 pointer-events-none hidden md:block">
+          <video
+            className="w-full h-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster={asset('/bazalt.jpg')}
+          >
+            <source src={asset('/dortayaklıweb.mp4')} type="video/mp4" />
+          </video>
+          {/* Video üzerine gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-basalt-900/20 via-transparent to-basalt-900/40"></div>
+        </div>
+        
         <div className="fixed top-0 left-0 right-0 h-2 bg-gradient-to-r from-copper-600 via-terracotta-600 via-dicle-600 to-copper-600 z-50 shadow-copper"></div>
         
         <header className="border-b-4 border-basalt-700 sticky top-0 z-40 bg-gradient-to-r from-basalt-800 via-basalt-900 to-basalt-800 shadow-basalt wall-pattern">
