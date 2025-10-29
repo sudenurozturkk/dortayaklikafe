@@ -53,7 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             preload="metadata"
             poster={asset('/bazalt.jpg')}
           >
-            <source src={asset('/dörtayaklıkafe.mp4')} type="video/mp4" />
+            <source src={asset('/dortayaklıkafe.mp4')} type="video/mp4" />
           </video>
           {/* Video üzerine gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-basalt-900/20 via-transparent to-basalt-900/40"></div>

@@ -6,6 +6,8 @@ import { motion } from 'framer-motion'
 import { ArrowLeft } from 'lucide-react'
 import ProductRow from '@/components/ProductRow'
 import { MenuItem } from '@/lib/types'
+import { toTRY } from '@/lib/format'
+import { asset } from '@/lib/paths'
 
 type Props = {
   category: string
@@ -77,6 +79,41 @@ export default function CategoryPageClient({ category, items }: Props) {
                 ))}
               </div>
             </div>
+          </div>
+        ) : category === 'Portre Resim Çizimi' ? (
+          <div className="max-w-5xl mx-auto">
+            {sorted.map((it, idx) => (
+              <div key={idx} className="group flex flex-col justify-between p-4 sm:p-6 rounded-lg border-2 border-basalt-700 bg-basalt-900/60 transition-transform duration-200 hover:scale-[1.01]">
+                <div className="w-full">
+                  {it.image && (
+                    <div className="mb-4 rounded-md overflow-hidden border border-basalt-700 bg-basalt-800">
+                      <img 
+                        src={it.image.startsWith('http') ? it.image : asset(it.image)} 
+                        alt={it.name}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-auto aspect-video object-cover"
+                      />
+                    </div>
+                  )}
+                  <p className="font-display font-bold text-2xl sm:text-3xl text-white transition-colors mb-3">
+                    {it.name}
+                  </p>
+                  {it.desc && (
+                    <p className="text-base sm:text-lg text-white/80 leading-relaxed">
+                      {it.desc}
+                    </p>
+                  )}
+                </div>
+                <div className="w-full sm:text-right flex justify-start sm:justify-end items-start mt-4">
+                  <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-br from-copper-600 to-terracotta-600 rounded-lg border-2 border-copper-700 shadow-copper wood-texture wood-grain">
+                    <span className="text-2xl sm:text-3xl font-black text-white font-ottoman tracking-wide">
+                      {toTRY(it.price)}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
