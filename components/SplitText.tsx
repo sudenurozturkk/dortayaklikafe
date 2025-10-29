@@ -5,12 +5,10 @@ import { useGSAP } from '@gsap/react'
 export interface SplitTextProps {
   text: string
   className?: string
-  // Our original simple API
   delayMs?: number
   duration?: number
   ease?: string | ((t: number) => number)
   tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span'
-  // Compatibility props with the usage example
   delay?: number
   splitType?: 'chars' | 'words' | 'lines' | 'words, chars'
   from?: any
@@ -19,6 +17,7 @@ export interface SplitTextProps {
   rootMargin?: string
   textAlign?: React.CSSProperties['textAlign']
   onLetterAnimationComplete?: () => void
+  allowWrap?: boolean
 }
 
 export default function SplitText({
@@ -28,7 +27,6 @@ export default function SplitText({
   duration = 0.6,
   ease = 'power3.out',
   tag = 'p',
-  // compatibility
   delay,
   splitType = 'chars',
   from = { opacity: 0, y: 40 },
@@ -36,17 +34,18 @@ export default function SplitText({
   threshold = 0.2,
   rootMargin = '0px',
   textAlign,
-  onLetterAnimationComplete
+  onLetterAnimationComplete,
+  allowWrap = false
 }: SplitTextProps) {
   const rootRef = useRef<HTMLElement | null>(null)
+  const spaceChar = allowWrap ? ' ' : '\u00A0'
   const parts = useMemo(() => {
     const useWords = splitType.includes('words')
     if (useWords) {
-      return text.split(/(\s+)/).map((w) => (w === ' ' ? '\u00A0' : w))
+      return text.split(/(\s+)/).map((w) => (w.trim().length === 0 ? spaceChar : w))
     }
-    // default: chars
-    return Array.from(text).map((ch) => (ch === ' ' ? '\u00A0' : ch))
-  }, [text, splitType])
+    return Array.from(text).map((ch) => (ch === ' ' ? spaceChar : ch))
+  }, [text, splitType, spaceChar])
 
   useGSAP(async () => {
     if (!rootRef.current) return
@@ -83,7 +82,16 @@ export default function SplitText({
   const Tag = tag as any
 
   return (
-    <Tag ref={rootRef} className={className} style={{ display: 'inline-block', overflow: 'hidden', textAlign }}>
+    <Tag
+      ref={rootRef}
+      className={className}
+      style={{
+        display: allowWrap ? 'block' : 'inline-block',
+        overflow: 'hidden',
+        textAlign,
+        whiteSpace: allowWrap ? 'normal' : undefined
+      }}
+    >
       {parts.map((c, i) => (
         <span
           key={i}
