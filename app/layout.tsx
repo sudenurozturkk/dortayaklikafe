@@ -42,26 +42,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="tr">
       <body style={bodyStyle}>
-        {/* Mobilde statik arka plan */}
-        <div className="fixed inset-0 z-0 pointer-events-none md:hidden" aria-hidden>
-          <div className="w-full h-full bg-gradient-to-b from-basalt-900 via-basalt-950 to-basalt-900 opacity-90" />
-        </div>
-        {/* Masaüstünde video arka plan */}
-        <div className="fixed inset-0 z-0 pointer-events-none hidden md:block">
-          <video
-            className="w-full h-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-          >
-            {/* Desktop video asset */}
-            <source src={asset('/dortayaklıweb.mp4')} type="video/mp4" />
-            {/* Fallbacks */}
-            <source src={asset('/video.mp4')} type="video/mp4" />
-            <source src={asset('/dörtayaklıkafe.mp4')} type="video/mp4" />
-          </video>
+        <div className="fixed inset-0 z-0 pointer-events-none" aria-hidden>
+          <div
+            className="w-full h-full"
+            style={{
+              backgroundImage: `linear-gradient(180deg, rgba(9, 9, 11, 0.92) 0%, rgba(17, 24, 39, 0.94) 35%, rgba(17, 24, 39, 0.98) 100%), url(${asset('/bazalt.jpg')})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              filter: 'saturate(0.9)',
+              transform: 'translateZ(0)'
+            }}
+          />
         </div>
         <div className="fixed top-0 left-0 right-0 h-2 bg-gradient-to-r from-copper-600 via-terracotta-600 via-dicle-600 to-copper-600 z-50 shadow-copper"></div>
         

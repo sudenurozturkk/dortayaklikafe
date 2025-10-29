@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { ChevronRight, Coffee, Cake, Salad, UtensilsCrossed, Droplets, Flame, Paintbrush } from "lucide-react"
+import { toSlug } from "@/lib/slug"
 
 const categoryIcons: Record<string, any> = {
   "İçecekler": Coffee,
@@ -16,12 +17,10 @@ const categoryIcons: Record<string, any> = {
 
 export default function CategoryCard({ title, count, backgroundImage, accent = 'dark' }: { title: string; count: number; backgroundImage?: string; accent?: 'dark'|'light' }) {
   const Icon = categoryIcons[title] || Coffee
+  const slug = toSlug(title)
   
   return (
-    <Link
-      href={{ pathname: '/menu/[category]', query: { category: title } }}
-      className="group"
-    >
+    <Link href={`/menu/${slug}`} className="group">
       <motion.div 
         whileHover={{ scale: 1.03, y: -6 }} 
         whileTap={{ scale: 0.97 }}

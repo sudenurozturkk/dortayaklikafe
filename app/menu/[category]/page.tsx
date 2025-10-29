@@ -1,28 +1,35 @@
 import menuData from '@/data/menu.json'
 import CategoryPageClient from './CategoryPageClient'
 import { notFound } from 'next/navigation'
+import { toSlug } from '@/lib/slug'
 
 export const dynamic = 'error'
+export const dynamicParams = false
 
 const menu = menuData as Record<string, any[]>
+const categories = Object.keys(menu).map((category) => ({
+  category,
+  slug: toSlug(category)
+})).filter((entry) => entry.slug)
 
-export function generateStaticParams() {
-  return Object.keys(menu)
-    .filter((category) => Array.isArray(menu[category]) && (menu[category] as unknown[]).length > 0)
-    .map((category) => ({ category }))
+export const generateStaticParams = () => {
+  return categories.map(({ slug }) => ({ category: slug }))
 }
 
 export default function CategoryPage({ params }: { params: { category: string } }) {
-  let decoded = decodeURIComponent(params.category)
-  if (!menu[decoded] && decoded.includes('%')) {
-    decoded = decodeURIComponent(decoded)
+  const normalizedSlug = params.category.toLocaleLowerCase('tr-TR')
+  const match = categories.find((entry) => entry.slug === normalizedSlug)
+
+  if (!match) {
+    notFound()
   }
-  const items = (menu[decoded] as any[]) || []
+
+  const items = (menu[match.category] as any[]) || []
 
   if (!items.length) {
     notFound()
   }
 
-  return <CategoryPageClient category={decoded} items={items} />
+  return <CategoryPageClient category={match.category} items={items} />
 }
 
