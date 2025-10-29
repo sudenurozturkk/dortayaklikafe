@@ -1,6 +1,5 @@
 import { MenuItem } from "@/lib/types"
 import { toTRY } from "@/lib/format"
-import { motion } from "framer-motion"
 import { asset } from "@/lib/paths"
 
 export default function ProductRow({ item }: { item: MenuItem }) {
@@ -11,18 +10,17 @@ export default function ProductRow({ item }: { item: MenuItem }) {
     : undefined
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 5 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="group flex flex-col justify-between p-2 sm:p-3 rounded-lg border-2 border-basalt-700 bg-basalt-900/60 h-full min-h-72 md:min-h-80"
+    <div className="group flex flex-col justify-between p-2 sm:p-3 rounded-lg border-2 border-basalt-700 bg-basalt-900/60 h-full min-h-72 md:min-h-80 transition-transform duration-200 hover:scale-[1.02]"
     >
       <div className="w-full">
         {imageUrl && (
-          <div className="mb-2 rounded-md overflow-hidden border border-basalt-700">
+          <div className="mb-2 rounded-md overflow-hidden border border-basalt-700 bg-basalt-800">
             <img 
               src={imageUrl} 
-              alt={item.name} 
-              className="w-full h-64 sm:h-80 md:h-96 lg:h-[28rem] object-contain bg-basalt-800"
+              alt={item.name}
+              loading="lazy"
+              decoding="async"
+              className="w-full h-64 sm:h-80 md:h-96 lg:h-[28rem] object-contain"
             />
           </div>
         )}
@@ -42,7 +40,7 @@ export default function ProductRow({ item }: { item: MenuItem }) {
           </span>
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 }
 

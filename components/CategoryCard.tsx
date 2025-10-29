@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { motion } from "framer-motion"
 import { ChevronRight, Coffee, Cake, Salad, UtensilsCrossed, Droplets, Flame, Paintbrush } from "lucide-react"
 import { toSlug } from "@/lib/slug"
 
@@ -21,10 +20,7 @@ export default function CategoryCard({ title, count, backgroundImage, accent = '
   
   return (
     <Link href={`/menu/${slug}`} className="group">
-      <motion.div 
-        whileHover={{ scale: 1.03, y: -6 }} 
-        whileTap={{ scale: 0.97 }}
-        className="card card-hover p-5 sm:p-7 relative overflow-hidden group"
+      <div className="card card-hover p-5 sm:p-7 relative overflow-hidden group transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 active:scale-[0.98]"
       >
         {/* Ürün sayısı - kartın üstünde beyaz */}
         <div className="absolute top-3 right-3 z-10">
@@ -68,7 +64,7 @@ export default function CategoryCard({ title, count, backgroundImage, accent = '
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </Link>
   )
 }
