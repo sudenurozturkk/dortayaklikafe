@@ -2,6 +2,23 @@
 import React, { useMemo, useRef, useEffect, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 
+// Helpers -------------------------------------------------
+const registerMediaQueryListener = (
+  mql: MediaQueryList,
+  handler: (event: MediaQueryListEvent | MediaQueryList) => void
+) => {
+  if (typeof mql.addEventListener === 'function') {
+    mql.addEventListener('change', handler as (event: MediaQueryListEvent) => void)
+    return () => mql.removeEventListener('change', handler as (event: MediaQueryListEvent) => void)
+  }
+
+  // Safari < 14 fallback
+  ;(mql as any).addListener(handler)
+  return () => {
+    ;(mql as any).removeListener(handler)
+  }
+}
+
 type Piece = {
   value: string
   animate: boolean
@@ -58,14 +75,14 @@ export default function SplitText({
     evaluate()
 
     const handleResize = () => evaluate()
-    const handlePrefChange = () => evaluate()
-
+    const cleanupResize = () => window.removeEventListener('resize', handleResize)
     window.addEventListener('resize', handleResize)
-    prefersReducedMotion.addEventListener('change', handlePrefChange)
+
+    const removePrefListener = registerMediaQueryListener(prefersReducedMotion, evaluate)
 
     return () => {
-      window.removeEventListener('resize', handleResize)
-      prefersReducedMotion.removeEventListener('change', handlePrefChange)
+      cleanupResize()
+      removePrefListener()
     }
   }, [allowWrap])
 
