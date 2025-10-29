@@ -42,7 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="tr">
       <body style={bodyStyle}>
-        {/* Mobil için küçük video (dörtayaklıkafe.mp4) */}
+        {/* Mobil için video (dörtayaklıkafe.mp4 - yazılı versiyon) */}
         <div className="fixed inset-0 z-0 pointer-events-none md:hidden">
           <video
             className="w-full h-full object-cover"
@@ -59,7 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="absolute inset-0 bg-gradient-to-b from-basalt-900/20 via-transparent to-basalt-900/40"></div>
         </div>
         
-        {/* Masaüstü için kaliteli video (dortayaklıweb.mp4) */}
+        {/* Masaüstü için video (dortayaklıweb.mp4) */}
         <div className="fixed inset-0 z-0 pointer-events-none hidden md:block">
           <video
             className="w-full h-full object-cover"
