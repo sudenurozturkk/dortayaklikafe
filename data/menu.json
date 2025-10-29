@@ -129,12 +129,13 @@
     },
     {
       "name": "Serpme Kahvaltı Tabağı",
-      "price": 200,
+      "price": 250,
       "image": "/Kahvaltı.jpg"
     },
     {
       "name": "2 Kişilik Serpme Kahvaltı",
-      "price": 450,
+      "price": 900,
+      "desc": "Kişi başı 450 TL",
       "image": "/serpmekahvaltı.jpg"
     }
   ]
